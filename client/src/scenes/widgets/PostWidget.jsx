@@ -26,11 +26,13 @@ const PostWidget = ({
   comments,
 }) => {
   const [isComments, setIsComments] = useState(false);
+  const [isLikedState, setIsLikedState] = useState();
   const dispatch = useDispatch();
   const token = useSelector((state) => state.token);
   // const posts = useSelector((state) => state.posts);
   const loggedInUserId = useSelector((state) => state.user._id);
-  const isLiked = Boolean(likes[loggedInUserId]);
+  const [isLiked, setIsLiked] = useState(Boolean(likes[loggedInUserId]));
+  // const isLiked = Boolean(likes[loggedInUserId]);
   const likeCount = Object.keys(likes).length;
   const navigate = useNavigate();
 
@@ -49,6 +51,7 @@ const PostWidget = ({
     });
     const updatedPost = await response.json();
     dispatch(setPost({ post: updatedPost }));
+    setIsLiked((isLiked) => !isLiked);
     // isLiked = !isLiked;
 
     // navigate(0);

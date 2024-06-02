@@ -40,8 +40,10 @@ export const getUserPosts = async (req, res) => {
     const { userId } = req.params;
     const post = await Post.find({ userId });
     res.status(200).json(post);
+    console.log(post);
   } catch (err) {
-    res.status(404).json({ message: err.message });
+    res.json({ message: err.message });
+    // res.status(404).json({ message: err.message });
   }
 };
 

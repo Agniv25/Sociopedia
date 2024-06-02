@@ -1,3 +1,4 @@
+import { ConnectingAirportsOutlined } from "@mui/icons-material";
 import { Box, Skeleton, Typography, useTheme } from "@mui/material";
 import Friend from "components/Friend";
 import WidgetWrapper from "components/WidgetWrapper";
@@ -21,6 +22,8 @@ const FriendListWidget = ({ userId }) => {
       }
     );
     const data = await response.json();
+    console.log("THe freinds are");
+    console.log(data);
     dispatch(setFriends({ friends: data }));
   };
   useEffect(() => {
@@ -30,6 +33,7 @@ const FriendListWidget = ({ userId }) => {
 
   useEffect(() => {
     getFriends();
+    console.log("friend list got updated");
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
@@ -51,16 +55,18 @@ const FriendListWidget = ({ userId }) => {
             Friend List
           </Typography>
           <Box display="flex" flexDirection="column" gap="1.5rem">
-            {friends.map((friend) => (
-              <Friend
-                key={friend._id}
-                friendId={friend._id}
-                name={`${friend.firstName} ${friend.lastName}`}
-                subtitle={friend.occupation}
-                userPicturePath={friend.picturePath}
-              />
-            ))}
+            {friends &&
+              friends.map((friend) => (
+                <Friend
+                  key={friend._id}
+                  friendId={friend._id}
+                  name={`${friend.firstName} ${friend.lastName}`}
+                  subtitle={friend.occupation}
+                  userPicturePath={friend.picturePath}
+                />
+              ))}
           </Box>
+          {console.log(friends)}
         </WidgetWrapper>
       )}
     </>
