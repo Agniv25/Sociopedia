@@ -1,5 +1,5 @@
 # Sociopedia
-![Sociopedia](client/public/assets/linkedin.png)
+![Sociopedia](client/public/assets/images.png)
 Sociopedia is a social media application built using React. It offers a variety of features to enhance user interaction and experience.
 
 ## Features
